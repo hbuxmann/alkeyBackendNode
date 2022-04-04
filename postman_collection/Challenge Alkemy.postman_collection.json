@@ -1,0 +1,3813 @@
+{
+	"info": {
+		"_postman_id": "eb69259c-09ae-41ea-978e-6725f02efcf5",
+		"name": "Challenge Alkemy",
+		"description": "In order to execute all the endponts related with movies, characters, character vs movies and genres you must to get a token.\n\nHow to get a token?\n\nYou should register a user and thend login in order to get a token key. Once you get this token, you must include it in the header, in the authorization section.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "auth",
+			"item": [
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);\r",
+									"postman.setEnvironmentVariable(\"token\", jsonData.token);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"user\": \"admin@admin.com\",\r\n    \"password\": \"1234\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3003/api/v1/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3003",
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Invalid Login",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"user\": \"jaime2@gmail.com\",\r\n    \"password\": \"12342\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3003/auth/login",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3003",
+									"path": [
+										"auth",
+										"login"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "105"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"69-vHwLCV3nPzXoljIWyjo3FoJhf+4\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 23 Mar 2022 10:35:28 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": false,\n    \"status_code\": 401,\n    \"message\": \"Invalid credentials, please verify your user and/or email\"\n}"
+						},
+						{
+							"name": "Bad request Login",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"user\": \"jaime2@gmail.com\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3003/auth/login",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3003",
+									"path": [
+										"auth",
+										"login"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "82"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"52-zccfBTnfO5jSbahIkx0Zb2RzvgM\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 23 Mar 2022 10:36:03 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": false,\n    \"status_code\": 400,\n    \"message\": \"You must send all mandatory fields\"\n}"
+						},
+						{
+							"name": "Sucess Login",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"user\": \"admin@admin.com\",\r\n    \"password\": \"1234\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3003/api/v1/auth/login",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3003",
+									"path": [
+										"api",
+										"v1",
+										"auth",
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Origin, X-Requested-With, Content-Type, Accept"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "235"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"eb-N3+8W4t5Oz8MmIekHR6zczB9Yp4\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 03 Apr 2022 22:14:09 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"status_code\": 200,\n    \"message\": \"Successful login\",\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiYWRtaW5AYWRtaW4uY29tIiwiaWF0IjoxNjQ5MDI0MDQ5LCJleHAiOjE2NDkwMjc2NDl9.UqMnD7eTCofH7ASNXj2G-yu_2B42F3VIn_a7SvKxetI\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nickname\": \"buxi\",\r\n    \"user\": \"hbuxmann@gmail.com\",\r\n    \"password\": \"1234\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3003/api/v1/auth/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3003",
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Invalid Register - DB issue",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nickname\": \"jaime\",\r\n    \"user\": \"jaimegmail.com\",\r\n    \"password\": \"1234\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3003/auth/register",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3003",
+									"path": [
+										"auth",
+										"register"
+									]
+								}
+							},
+							"status": "Conflict",
+							"code": 409,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "298"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"12a-ujUwyeF1zNyF7zik+dnBa3QhlOc\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 23 Mar 2022 02:47:19 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": false,\n    \"error\": {\n        \"name\": \"SequelizeConnectionRefusedError\",\n        \"parent\": {\n            \"errno\": -4078,\n            \"code\": \"ECONNREFUSED\",\n            \"syscall\": \"connect\",\n            \"address\": \"127.0.0.1\",\n            \"port\": 3306,\n            \"fatal\": true\n        },\n        \"original\": {\n            \"errno\": -4078,\n            \"code\": \"ECONNREFUSED\",\n            \"syscall\": \"connect\",\n            \"address\": \"127.0.0.1\",\n            \"port\": 3306,\n            \"fatal\": true\n        }\n    }\n}"
+						},
+						{
+							"name": "Invalid Register - DB user already exists",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nickname\": \"jaime\",\r\n    \"user\": \"jaimegmail.com\",\r\n    \"password\": \"1234\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3003/auth/register",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3003",
+									"path": [
+										"auth",
+										"register"
+									]
+								}
+							},
+							"status": "Conflict",
+							"code": 409,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1256"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"4e8-qVcrv4RD78aq6PUVnkUh4dtDQLs\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 23 Mar 2022 02:51:04 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": false,\n    \"error\": {\n        \"name\": \"SequelizeUniqueConstraintError\",\n        \"errors\": [\n            {\n                \"message\": \"user must be unique\",\n                \"type\": \"unique violation\",\n                \"path\": \"user\",\n                \"value\": \"jaimegmail.com\",\n                \"origin\": \"DB\",\n                \"instance\": {\n                    \"id\": null,\n                    \"nickname\": \"jaime\",\n                    \"user\": \"jaimegmail.com\",\n                    \"password\": \"1234\",\n                    \"updatedAt\": \"2022-03-23T02:51:04.147Z\",\n                    \"createdAt\": \"2022-03-23T02:51:04.147Z\"\n                },\n                \"validatorKey\": \"not_unique\",\n                \"validatorName\": null,\n                \"validatorArgs\": []\n            }\n        ],\n        \"parent\": {\n            \"code\": \"ER_DUP_ENTRY\",\n            \"errno\": 1062,\n            \"sqlState\": \"23000\",\n            \"sqlMessage\": \"Duplicate entry 'jaimegmail.com' for key 'users.user'\",\n            \"sql\": \"INSERT INTO `Users` (`id`,`nickname`,`user`,`password`,`createdAt`,`updatedAt`) VALUES (DEFAULT,?,?,?,?,?);\",\n            \"parameters\": [\n                \"jaime\",\n                \"jaimegmail.com\",\n                \"1234\",\n                \"2022-03-23 02:51:04\",\n                \"2022-03-23 02:51:04\"\n            ]\n        },\n        \"original\": {\n            \"code\": \"ER_DUP_ENTRY\",\n            \"errno\": 1062,\n            \"sqlState\": \"23000\",\n            \"sqlMessage\": \"Duplicate entry 'jaimegmail.com' for key 'users.user'\",\n            \"sql\": \"INSERT INTO `Users` (`id`,`nickname`,`user`,`password`,`createdAt`,`updatedAt`) VALUES (DEFAULT,?,?,?,?,?);\",\n            \"parameters\": [\n                \"jaime\",\n                \"jaimegmail.com\",\n                \"1234\",\n                \"2022-03-23 02:51:04\",\n                \"2022-03-23 02:51:04\"\n            ]\n        },\n        \"fields\": {\n            \"user\": \"jaimegmail.com\"\n        },\n        \"sql\": \"INSERT INTO `Users` (`id`,`nickname`,`user`,`password`,`createdAt`,`updatedAt`) VALUES (DEFAULT,?,?,?,?,?);\"\n    }\n}"
+						},
+						{
+							"name": "Invalid Register - DB Validation",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nickname\": \"jaime\",\r\n    \"user\": \"jaimegmail.com\",\r\n    \"password\": \"1234\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3003/auth/register",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3003",
+									"path": [
+										"auth",
+										"register"
+									]
+								}
+							},
+							"status": "Conflict",
+							"code": 409,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "896"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"380-X1pnCjy6xRF29nC9lH///QdMNIM\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 23 Mar 2022 02:54:59 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": false,\n    \"error\": {\n        \"name\": \"SequelizeDatabaseError\",\n        \"parent\": {\n            \"code\": \"ER_NO_DEFAULT_FOR_FIELD\",\n            \"errno\": 1364,\n            \"sqlState\": \"HY000\",\n            \"sqlMessage\": \"Field 'password' doesn't have a default value\",\n            \"sql\": \"INSERT INTO `Users` (`id`,`nickname`,`user`,`createdAt`,`updatedAt`) VALUES (DEFAULT,?,?,?,?);\",\n            \"parameters\": [\n                \"jaime\",\n                \"jaimegmail.com\",\n                \"2022-03-23 02:54:59\",\n                \"2022-03-23 02:54:59\"\n            ]\n        },\n        \"original\": {\n            \"code\": \"ER_NO_DEFAULT_FOR_FIELD\",\n            \"errno\": 1364,\n            \"sqlState\": \"HY000\",\n            \"sqlMessage\": \"Field 'password' doesn't have a default value\",\n            \"sql\": \"INSERT INTO `Users` (`id`,`nickname`,`user`,`createdAt`,`updatedAt`) VALUES (DEFAULT,?,?,?,?);\",\n            \"parameters\": [\n                \"jaime\",\n                \"jaimegmail.com\",\n                \"2022-03-23 02:54:59\",\n                \"2022-03-23 02:54:59\"\n            ]\n        },\n        \"sql\": \"INSERT INTO `Users` (`id`,`nickname`,`user`,`createdAt`,`updatedAt`) VALUES (DEFAULT,?,?,?,?);\",\n        \"parameters\": [\n            \"jaime\",\n            \"jaimegmail.com\",\n            \"2022-03-23 02:54:59\",\n            \"2022-03-23 02:54:59\"\n        ]\n    }\n}"
+						},
+						{
+							"name": "Success Register",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nickname\": \"buxi\",\r\n    \"user\": \"hbuxmann@gmail.com\",\r\n    \"password\": \"1234\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3003/api/v1/auth/register",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3003",
+									"path": [
+										"api",
+										"v1",
+										"auth",
+										"register"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Origin, X-Requested-With, Content-Type, Accept"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "63"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"3f-sS1SV96x8trCDUhGl2rVWJ5zhx8\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 03 Apr 2022 23:15:15 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"status_code\": 201,\n    \"message\": \"User registered!\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "movies",
+			"item": [
+				{
+					"name": "movies",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3003/api/v1/movies",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3003",
+							"path": [
+								"api",
+								"v1",
+								"movies"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "movies - token validation",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:3003/api/v1/movies",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3003",
+									"path": [
+										"api",
+										"v1",
+										"movies"
+									]
+								}
+							},
+							"status": "Forbidden",
+							"code": 403,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Origin, X-Requested-With, Content-Type, Accept"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "57"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"39-cZkEGPt9ufho+h7BcDCinTJeEp8\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 03 Apr 2022 23:15:48 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": false,\n    \"status_code\": 403,\n    \"message\": \"Forbidden\"\n}"
+						},
+						{
+							"name": "movies",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:3003/api/v1/movies",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3003",
+									"path": [
+										"api",
+										"v1",
+										"movies"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Origin, X-Requested-With, Content-Type, Accept"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "408"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"198-X4e6iXPWStWqi3szHi2MZJQnZjg\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 03 Apr 2022 23:22:39 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"status_code\": 200,\n    \"message\": \"OK\",\n    \"data\": [\n        {\n            \"image\": \"Finding Nemo\",\n            \"title\": \"Finding Nemo\",\n            \"release_date\": \"2003-07-03T00:00:00.000Z\"\n        },\n        {\n            \"image\": \"Terminator\",\n            \"title\": \"Terminator\",\n            \"release_date\": \"1984-10-24T00:00:00.000Z\"\n        },\n        {\n            \"image\": \"Toy Story\",\n            \"title\": \"Toy Story\",\n            \"release_date\": \"1995-11-19T00:00:00.000Z\"\n        },\n        {\n            \"image\": \"Pulp Fiction\",\n            \"title\": \"Pulp Fiction\",\n            \"release_date\": \"1994-10-14T00:00:00.000Z\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "movies find by title",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3003/api/v1/movies?title=finding",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3003",
+							"path": [
+								"api",
+								"v1",
+								"movies"
+							],
+							"query": [
+								{
+									"key": "title",
+									"value": "finding"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "movies find by title - not found",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:3003/api/v1/movies?title=dispisssss",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3003",
+									"path": [
+										"api",
+										"v1",
+										"movies"
+									],
+									"query": [
+										{
+											"key": "title",
+											"value": "dispisssss"
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Origin, X-Requested-With, Content-Type, Accept"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "67"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"43-+BGirIgu7WyKYFfWeYUT7tiN9wk\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 03 Apr 2022 23:22:55 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": false,\n    \"status_code\": 404,\n    \"message\": \"There are no movies\"\n}"
+						},
+						{
+							"name": "movies find by title",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:3003/api/v1/movies?title=finding",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3003",
+									"path": [
+										"api",
+										"v1",
+										"movies"
+									],
+									"query": [
+										{
+											"key": "title",
+											"value": "finding"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Origin, X-Requested-With, Content-Type, Accept"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "395"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"18b-BKwredhUxvYRB27U8A0GPT01iLc\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 03 Apr 2022 23:23:53 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"status_code\": 200,\n    \"message\": \"OK\",\n    \"data\": [\n        {\n            \"id\": 1,\n            \"image\": \"Finding Nemo\",\n            \"title\": \"Finding Nemo\",\n            \"release_date\": \"2003-07-03T00:00:00.000Z\",\n            \"score\": 10,\n            \"genreId\": 1,\n            \"createdAt\": \"2022-04-03T23:21:47.000Z\",\n            \"updatedAt\": \"2022-04-03T23:21:47.000Z\",\n            \"genres\": {\n                \"id\": 1,\n                \"image\": \"Animation.png\",\n                \"name\": \"Animation\",\n                \"createdAt\": \"2022-04-03T23:21:47.000Z\",\n                \"updatedAt\": \"2022-04-03T23:21:47.000Z\"\n            }\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "movies find by title + order",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3003/api/v1/movies?title=terminator&order=DESC",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3003",
+							"path": [
+								"api",
+								"v1",
+								"movies"
+							],
+							"query": [
+								{
+									"key": "title",
+									"value": "terminator"
+								},
+								{
+									"key": "order",
+									"value": "DESC"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "movies find by title + order",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:3003/api/v1/movies?title=terminator&order=DESC",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3003",
+									"path": [
+										"api",
+										"v1",
+										"movies"
+									],
+									"query": [
+										{
+											"key": "title",
+											"value": "terminator"
+										},
+										{
+											"key": "order",
+											"value": "DESC"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Origin, X-Requested-With, Content-Type, Accept"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "385"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"181-/v+JXJduoUb/lfXQ5RxgImDfNCg\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 03 Apr 2022 23:24:49 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"status_code\": 200,\n    \"message\": \"OK\",\n    \"data\": [\n        {\n            \"id\": 2,\n            \"image\": \"Terminator\",\n            \"title\": \"Terminator\",\n            \"release_date\": \"1984-10-24T00:00:00.000Z\",\n            \"score\": 10,\n            \"genreId\": 5,\n            \"createdAt\": \"2022-04-03T23:21:47.000Z\",\n            \"updatedAt\": \"2022-04-03T23:21:47.000Z\",\n            \"genres\": {\n                \"id\": 5,\n                \"image\": \"Action.png\",\n                \"name\": \"Action\",\n                \"createdAt\": \"2022-04-03T23:21:47.000Z\",\n                \"updatedAt\": \"2022-04-03T23:21:47.000Z\"\n            }\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "movies find by genre id",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3003/api/v1/movies?genre=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3003",
+							"path": [
+								"api",
+								"v1",
+								"movies"
+							],
+							"query": [
+								{
+									"key": "genre",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "movies find by genre id",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:3003/api/v1/movies?genre=1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3003",
+									"path": [
+										"api",
+										"v1",
+										"movies"
+									],
+									"query": [
+										{
+											"key": "genre",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Origin, X-Requested-With, Content-Type, Accept"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "726"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2d6-XEpl5OG1aCkQcjqEKBVbHGUGNzM\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 03 Apr 2022 23:25:38 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"status_code\": 200,\n    \"message\": \"OK\",\n    \"data\": [\n        {\n            \"id\": 1,\n            \"image\": \"Finding Nemo\",\n            \"title\": \"Finding Nemo\",\n            \"release_date\": \"2003-07-03T00:00:00.000Z\",\n            \"score\": 10,\n            \"genreId\": 1,\n            \"createdAt\": \"2022-04-03T23:21:47.000Z\",\n            \"updatedAt\": \"2022-04-03T23:21:47.000Z\",\n            \"genres\": {\n                \"id\": 1,\n                \"image\": \"Animation.png\",\n                \"name\": \"Animation\",\n                \"createdAt\": \"2022-04-03T23:21:47.000Z\",\n                \"updatedAt\": \"2022-04-03T23:21:47.000Z\"\n            }\n        },\n        {\n            \"id\": 3,\n            \"image\": \"Toy Story\",\n            \"title\": \"Toy Story\",\n            \"release_date\": \"1995-11-19T00:00:00.000Z\",\n            \"score\": 10,\n            \"genreId\": 1,\n            \"createdAt\": \"2022-04-03T23:21:47.000Z\",\n            \"updatedAt\": \"2022-04-03T23:21:47.000Z\",\n            \"genres\": {\n                \"id\": 1,\n                \"image\": \"Animation.png\",\n                \"name\": \"Animation\",\n                \"createdAt\": \"2022-04-03T23:21:47.000Z\",\n                \"updatedAt\": \"2022-04-03T23:21:47.000Z\"\n            }\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "movies find by genre id + order",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3003/api/v1/movies?genre=1&order=desc",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3003",
+							"path": [
+								"api",
+								"v1",
+								"movies"
+							],
+							"query": [
+								{
+									"key": "genre",
+									"value": "1"
+								},
+								{
+									"key": "order",
+									"value": "desc"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "movies find by genre id + order",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:3003/api/v1/movies?genre=1&order=desc",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3003",
+									"path": [
+										"api",
+										"v1",
+										"movies"
+									],
+									"query": [
+										{
+											"key": "genre",
+											"value": "1"
+										},
+										{
+											"key": "order",
+											"value": "desc"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Origin, X-Requested-With, Content-Type, Accept"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "726"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2d6-i9+sjx0ec46WR/y+jNXxZNVpJPI\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 03 Apr 2022 23:26:14 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"status_code\": 200,\n    \"message\": \"OK\",\n    \"data\": [\n        {\n            \"id\": 3,\n            \"image\": \"Toy Story\",\n            \"title\": \"Toy Story\",\n            \"release_date\": \"1995-11-19T00:00:00.000Z\",\n            \"score\": 10,\n            \"genreId\": 1,\n            \"createdAt\": \"2022-04-03T23:21:47.000Z\",\n            \"updatedAt\": \"2022-04-03T23:21:47.000Z\",\n            \"genres\": {\n                \"id\": 1,\n                \"image\": \"Animation.png\",\n                \"name\": \"Animation\",\n                \"createdAt\": \"2022-04-03T23:21:47.000Z\",\n                \"updatedAt\": \"2022-04-03T23:21:47.000Z\"\n            }\n        },\n        {\n            \"id\": 1,\n            \"image\": \"Finding Nemo\",\n            \"title\": \"Finding Nemo\",\n            \"release_date\": \"2003-07-03T00:00:00.000Z\",\n            \"score\": 10,\n            \"genreId\": 1,\n            \"createdAt\": \"2022-04-03T23:21:47.000Z\",\n            \"updatedAt\": \"2022-04-03T23:21:47.000Z\",\n            \"genres\": {\n                \"id\": 1,\n                \"image\": \"Animation.png\",\n                \"name\": \"Animation\",\n                \"createdAt\": \"2022-04-03T23:21:47.000Z\",\n                \"updatedAt\": \"2022-04-03T23:21:47.000Z\"\n            }\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "movies find by id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:3003/api/v1/movies/4/find",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3003",
+							"path": [
+								"api",
+								"v1",
+								"movies",
+								"4",
+								"find"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "movies find by id",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost:3003/api/v1/movies/4/find",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3003",
+									"path": [
+										"api",
+										"v1",
+										"movies",
+										"4",
+										"find"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Origin, X-Requested-With, Content-Type, Accept"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "758"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2f6-bfbKIdJwnBN0rPYeBTMrHj+LPf4\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 03 Apr 2022 23:27:02 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"status_code\": 200,\n    \"message\": \"Ok\",\n    \"data\": {\n        \"id\": 4,\n        \"image\": \"Pulp Fiction\",\n        \"title\": \"Pulp Fiction\",\n        \"release_date\": \"1994-10-14T00:00:00.000Z\",\n        \"score\": 11,\n        \"genreId\": 5,\n        \"createdAt\": \"2022-04-03T23:21:47.000Z\",\n        \"updatedAt\": \"2022-04-03T23:21:47.000Z\",\n        \"character\": [\n            {\n                \"id\": 1,\n                \"image\": \"jt.img\",\n                \"name\": \"John Travolta\",\n                \"age\": 10,\n                \"weight\": 55.4,\n                \"history\": \"bio in progress. Please ask later\",\n                \"createdAt\": \"2022-04-03T23:21:47.000Z\",\n                \"updatedAt\": \"2022-04-03T23:21:47.000Z\",\n                \"charactermovies\": {\n                    \"characterId\": 1,\n                    \"movieId\": 4\n                }\n            },\n            {\n                \"id\": 2,\n                \"image\": \"slj.img\",\n                \"name\": \"Samuel L Jackson\",\n                \"age\": 50,\n                \"weight\": 85,\n                \"history\": \"bio in progress. Please ask later\",\n                \"createdAt\": \"2022-04-03T23:21:47.000Z\",\n                \"updatedAt\": \"2022-04-03T23:21:47.000Z\",\n                \"charactermovies\": {\n                    \"characterId\": 2,\n                    \"movieId\": 4\n                }\n            }\n        ]\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "movie create",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"image\": \"descicableMe.img\",\r\n    \"title\": \"Dispicable Me\",\r\n    \"release_date\": \"2010-06-19\",\r\n    \"score\": 5,\r\n    \"genreId\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3003/api/v1/movies/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3003",
+							"path": [
+								"api",
+								"v1",
+								"movies",
+								"create"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "movie create",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"image\": \"descicableMe.img\",\r\n    \"title\": \"Dispicable Me\",\r\n    \"release_date\": \"2010-06-19\",\r\n    \"score\": 5,\r\n    \"genreId\": 1\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3003/api/v1/movies/create",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3003",
+									"path": [
+										"api",
+										"v1",
+										"movies",
+										"create"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Origin, X-Requested-With, Content-Type, Accept"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "64"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"40-e4ZgD8cMO0VmpAcPYaZiqdcBv/A\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 03 Apr 2022 23:27:17 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"status_code\": 201,\n    \"message\": \"Movie was created\"\n}"
+						}
+					]
+				},
+				{
+					"name": "movie update",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"image\": \"Dispicable Me.img\",\r\n    \"title\": \"Despicable Me\",\r\n    \"score\": 5.3,\r\n    \"genreId\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3003/api/v1/movies/5/update",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3003",
+							"path": [
+								"api",
+								"v1",
+								"movies",
+								"5",
+								"update"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "movie update",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"image\": \"Dispicable Me.img\",\r\n    \"title\": \"Despicable Me\",\r\n    \"score\": 5.3,\r\n    \"genreId\": 1\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3003/api/v1/movies/5/update",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3003",
+									"path": [
+										"api",
+										"v1",
+										"movies",
+										"5",
+										"update"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Origin, X-Requested-With, Content-Type, Accept"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "68"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"44-VQ+Embm/xLvTWyhGBZVKMaG3kJY\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 03 Apr 2022 23:28:15 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"status_code\": 201,\n    \"message\": \"The movie was updated\"\n}"
+						}
+					]
+				},
+				{
+					"name": "movie delete",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3003/api/v1/movies/3/delete",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3003",
+							"path": [
+								"api",
+								"v1",
+								"movies",
+								"3",
+								"delete"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "movie delete",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3003/api/v1/movies/3/delete",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3003",
+									"path": [
+										"api",
+										"v1",
+										"movies",
+										"3",
+										"delete"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Origin, X-Requested-With, Content-Type, Accept"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "68"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"44-73IiCM3U+8fcnpwgwpVA5ZUqv3k\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 03 Apr 2022 23:28:35 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"status_code\": 201,\n    \"message\": \"The movie was deleted\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "characters",
+			"item": [
+				{
+					"name": "characters",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3003/api/v1/characters",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3003",
+							"path": [
+								"api",
+								"v1",
+								"characters"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "characters",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:3003/api/v1/characters",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3003",
+									"path": [
+										"api",
+										"v1",
+										"characters"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Origin, X-Requested-With, Content-Type, Accept"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "496"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"1f0-IUR/2cVdap4J4JzR/Hp9uXhZcqM\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 03 Apr 2022 22:14:13 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"status_code\": 200,\n    \"message\": \"OK\",\n    \"data\": [\n        {\n            \"image\": \"jt.img\",\n            \"name\": \"John Travolta\"\n        },\n        {\n            \"image\": \"slj.img\",\n            \"name\": \"Samuel L Jackson\"\n        },\n        {\n            \"image\": \"th.img\",\n            \"name\": \"Tom Hanks\"\n        },\n        {\n            \"image\": \"ta.img\",\n            \"name\": \"Time Allen\"\n        },\n        {\n            \"image\": \"as.img\",\n            \"name\": \"Arnold Schwarzenegger\"\n        },\n        {\n            \"image\": \"lh.img\",\n            \"name\": \"Linda Hamilton\"\n        },\n        {\n            \"image\": \"ab.img\",\n            \"name\": \"Albert Brooks\"\n        },\n        {\n            \"image\": \"ed.img\",\n            \"name\": \"Ellen DeGeneres\"\n        },\n        {\n            \"image\": \"Zombie.img\",\n            \"name\": \"Zombie season\"\n        },\n        {\n            \"image\": \"default.png\",\n            \"name\": \"Samuel Jackson\"\n        }\n    ]\n}"
+						},
+						{
+							"name": "characters - token validation",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:3003/api/v1/characters",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3003",
+									"path": [
+										"api",
+										"v1",
+										"characters"
+									]
+								}
+							},
+							"status": "Forbidden",
+							"code": 403,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Origin, X-Requested-With, Content-Type, Accept"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "57"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"39-cZkEGPt9ufho+h7BcDCinTJeEp8\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 03 Apr 2022 23:17:08 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": false,\n    \"status_code\": 403,\n    \"message\": \"Forbidden\"\n}"
+						}
+					]
+				},
+				{
+					"name": "characters find by name",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3003/api/v1/characters?name=arnold",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3003",
+							"path": [
+								"api",
+								"v1",
+								"characters"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "arnold"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "characters find by Name",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:3003/api/v1/characters?name=arnold",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3003",
+									"path": [
+										"api",
+										"v1",
+										"characters"
+									],
+									"query": [
+										{
+											"key": "name",
+											"value": "arnold"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Origin, X-Requested-With, Content-Type, Accept"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "389"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"185-qDT1l8DE2C/8GleyP7yXS8idIKY\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 03 Apr 2022 23:28:57 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"status_code\": 200,\n    \"message\": \"OK\",\n    \"data\": [\n        {\n            \"id\": 5,\n            \"image\": \"as.img\",\n            \"name\": \"Arnold Schwarzenegger\",\n            \"weight\": 95,\n            \"age\": 80,\n            \"movies\": [\n                {\n                    \"id\": 2,\n                    \"image\": \"Terminator\",\n                    \"title\": \"Terminator\",\n                    \"release_date\": \"1984-10-24T00:00:00.000Z\",\n                    \"score\": 10,\n                    \"genreId\": 5,\n                    \"createdAt\": \"2022-04-03T23:21:47.000Z\",\n                    \"updatedAt\": \"2022-04-03T23:21:47.000Z\",\n                    \"charactermovies\": {\n                        \"characterId\": 5,\n                        \"movieId\": 2\n                    }\n                }\n            ]\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "characters find by name or age",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3003/api/v1/characters?name=arnold&age=10",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3003",
+							"path": [
+								"api",
+								"v1",
+								"characters"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "arnold"
+								},
+								{
+									"key": "age",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "characters find by name or age",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:3003/api/v1/characters?name=arnold&age=10",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3003",
+									"path": [
+										"api",
+										"v1",
+										"characters"
+									],
+									"query": [
+										{
+											"key": "name",
+											"value": "arnold"
+										},
+										{
+											"key": "age",
+											"value": "10"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Origin, X-Requested-With, Content-Type, Accept"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "796"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"31c-DQQgDhZEFI/VB/SI7piMERBFcps\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 03 Apr 2022 23:29:32 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"status_code\": 200,\n    \"message\": \"OK\",\n    \"data\": [\n        {\n            \"id\": 1,\n            \"image\": \"jt.img\",\n            \"name\": \"John Travolta\",\n            \"weight\": 55.4,\n            \"age\": 10,\n            \"movies\": [\n                {\n                    \"id\": 4,\n                    \"image\": \"Pulp Fiction\",\n                    \"title\": \"Pulp Fiction\",\n                    \"release_date\": \"1994-10-14T00:00:00.000Z\",\n                    \"score\": 11,\n                    \"genreId\": 5,\n                    \"createdAt\": \"2022-04-03T23:21:47.000Z\",\n                    \"updatedAt\": \"2022-04-03T23:21:47.000Z\",\n                    \"charactermovies\": {\n                        \"characterId\": 1,\n                        \"movieId\": 4\n                    }\n                }\n            ]\n        },\n        {\n            \"id\": 4,\n            \"image\": \"ta.img\",\n            \"name\": \"Time Allen\",\n            \"weight\": 1,\n            \"age\": 10,\n            \"movies\": []\n        },\n        {\n            \"id\": 5,\n            \"image\": \"as.img\",\n            \"name\": \"Arnold Schwarzenegger\",\n            \"weight\": 95,\n            \"age\": 80,\n            \"movies\": [\n                {\n                    \"id\": 2,\n                    \"image\": \"Terminator\",\n                    \"title\": \"Terminator\",\n                    \"release_date\": \"1984-10-24T00:00:00.000Z\",\n                    \"score\": 10,\n                    \"genreId\": 5,\n                    \"createdAt\": \"2022-04-03T23:21:47.000Z\",\n                    \"updatedAt\": \"2022-04-03T23:21:47.000Z\",\n                    \"charactermovies\": {\n                        \"characterId\": 5,\n                        \"movieId\": 2\n                    }\n                }\n            ]\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "characters find by age",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3003/api/v1/characters?age=10",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3003",
+							"path": [
+								"api",
+								"v1",
+								"characters"
+							],
+							"query": [
+								{
+									"key": "age",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "characters find by age",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:3003/api/v1/characters?age=10",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3003",
+									"path": [
+										"api",
+										"v1",
+										"characters"
+									],
+									"query": [
+										{
+											"key": "age",
+											"value": "10"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Origin, X-Requested-With, Content-Type, Accept"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "465"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"1d1-LVKZLP+YKOaEpWe/1T9O5ml0D4g\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 03 Apr 2022 23:29:50 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"status_code\": 200,\n    \"message\": \"OK\",\n    \"data\": [\n        {\n            \"id\": 1,\n            \"image\": \"jt.img\",\n            \"name\": \"John Travolta\",\n            \"weight\": 55.4,\n            \"age\": 10,\n            \"movies\": [\n                {\n                    \"id\": 4,\n                    \"image\": \"Pulp Fiction\",\n                    \"title\": \"Pulp Fiction\",\n                    \"release_date\": \"1994-10-14T00:00:00.000Z\",\n                    \"score\": 11,\n                    \"genreId\": 5,\n                    \"createdAt\": \"2022-04-03T23:21:47.000Z\",\n                    \"updatedAt\": \"2022-04-03T23:21:47.000Z\",\n                    \"charactermovies\": {\n                        \"characterId\": 1,\n                        \"movieId\": 4\n                    }\n                }\n            ]\n        },\n        {\n            \"id\": 4,\n            \"image\": \"ta.img\",\n            \"name\": \"Time Allen\",\n            \"weight\": 1,\n            \"age\": 10,\n            \"movies\": []\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "characters find by movies",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3003/api/v1/characters?movies=Pulp Fic",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3003",
+							"path": [
+								"api",
+								"v1",
+								"characters"
+							],
+							"query": [
+								{
+									"key": "movies",
+									"value": "Pulp Fic"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "characters find by movies",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:3003/api/v1/characters?movies=Pulp Fic",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3003",
+									"path": [
+										"api",
+										"v1",
+										"characters"
+									],
+									"query": [
+										{
+											"key": "movies",
+											"value": "Pulp Fic"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Origin, X-Requested-With, Content-Type, Accept"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "966"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"3c6-MSSyRLpA63k9LV8BKX4Rnc+1ib0\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 03 Apr 2022 23:30:04 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"status_code\": 200,\n    \"message\": \"OK\",\n    \"data\": [\n        {\n            \"id\": 1,\n            \"image\": \"jt.img\",\n            \"name\": \"John Travolta\",\n            \"age\": 10,\n            \"weight\": 55.4,\n            \"history\": \"bio in progress. Please ask later\",\n            \"createdAt\": \"2022-04-03T23:21:47.000Z\",\n            \"updatedAt\": \"2022-04-03T23:21:47.000Z\",\n            \"movies\": [\n                {\n                    \"id\": 4,\n                    \"image\": \"Pulp Fiction\",\n                    \"title\": \"Pulp Fiction\",\n                    \"release_date\": \"1994-10-14T00:00:00.000Z\",\n                    \"score\": 11,\n                    \"genreId\": 5,\n                    \"createdAt\": \"2022-04-03T23:21:47.000Z\",\n                    \"updatedAt\": \"2022-04-03T23:21:47.000Z\",\n                    \"charactermovies\": {\n                        \"characterId\": 1,\n                        \"movieId\": 4\n                    }\n                }\n            ]\n        },\n        {\n            \"id\": 2,\n            \"image\": \"slj.img\",\n            \"name\": \"Samuel L Jackson\",\n            \"age\": 50,\n            \"weight\": 85,\n            \"history\": \"bio in progress. Please ask later\",\n            \"createdAt\": \"2022-04-03T23:21:47.000Z\",\n            \"updatedAt\": \"2022-04-03T23:21:47.000Z\",\n            \"movies\": [\n                {\n                    \"id\": 4,\n                    \"image\": \"Pulp Fiction\",\n                    \"title\": \"Pulp Fiction\",\n                    \"release_date\": \"1994-10-14T00:00:00.000Z\",\n                    \"score\": 11,\n                    \"genreId\": 5,\n                    \"createdAt\": \"2022-04-03T23:21:47.000Z\",\n                    \"updatedAt\": \"2022-04-03T23:21:47.000Z\",\n                    \"charactermovies\": {\n                        \"characterId\": 2,\n                        \"movieId\": 4\n                    }\n                }\n            ]\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "characters find by movies or movie id",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3003/api/v1/characters?movies=Pulp&movieId=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3003",
+							"path": [
+								"api",
+								"v1",
+								"characters"
+							],
+							"query": [
+								{
+									"key": "movies",
+									"value": "Pulp"
+								},
+								{
+									"key": "movieId",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "characters find by movies or movie id",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:3003/api/v1/characters?movies=Pulp&movieId=1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3003",
+									"path": [
+										"api",
+										"v1",
+										"characters"
+									],
+									"query": [
+										{
+											"key": "movies",
+											"value": "Pulp"
+										},
+										{
+											"key": "movieId",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Origin, X-Requested-With, Content-Type, Accept"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1874"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"752-WAsPTIkQ3UTEwbgeXTinnhtiUxE\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 03 Apr 2022 23:30:36 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"status_code\": 200,\n    \"message\": \"OK\",\n    \"data\": [\n        {\n            \"id\": 7,\n            \"image\": \"ab.img\",\n            \"name\": \"Albert Brooks\",\n            \"age\": 32,\n            \"weight\": 78.2,\n            \"history\": \"bio in progress. Please ask later\",\n            \"createdAt\": \"2022-04-03T23:21:47.000Z\",\n            \"updatedAt\": \"2022-04-03T23:21:47.000Z\",\n            \"movies\": [\n                {\n                    \"id\": 1,\n                    \"image\": \"Finding Nemo\",\n                    \"title\": \"Finding Nemo\",\n                    \"release_date\": \"2003-07-03T00:00:00.000Z\",\n                    \"score\": 10,\n                    \"genreId\": 1,\n                    \"createdAt\": \"2022-04-03T23:21:47.000Z\",\n                    \"updatedAt\": \"2022-04-03T23:21:47.000Z\",\n                    \"charactermovies\": {\n                        \"characterId\": 7,\n                        \"movieId\": 1\n                    }\n                }\n            ]\n        },\n        {\n            \"id\": 8,\n            \"image\": \"ed.img\",\n            \"name\": \"Ellen DeGeneres\",\n            \"age\": 64,\n            \"weight\": 58.4,\n            \"history\": \"bio in progress. Please ask later\",\n            \"createdAt\": \"2022-04-03T23:21:47.000Z\",\n            \"updatedAt\": \"2022-04-03T23:21:47.000Z\",\n            \"movies\": [\n                {\n                    \"id\": 1,\n                    \"image\": \"Finding Nemo\",\n                    \"title\": \"Finding Nemo\",\n                    \"release_date\": \"2003-07-03T00:00:00.000Z\",\n                    \"score\": 10,\n                    \"genreId\": 1,\n                    \"createdAt\": \"2022-04-03T23:21:47.000Z\",\n                    \"updatedAt\": \"2022-04-03T23:21:47.000Z\",\n                    \"charactermovies\": {\n                        \"characterId\": 8,\n                        \"movieId\": 1\n                    }\n                }\n            ]\n        },\n        {\n            \"id\": 1,\n            \"image\": \"jt.img\",\n            \"name\": \"John Travolta\",\n            \"age\": 10,\n            \"weight\": 55.4,\n            \"history\": \"bio in progress. Please ask later\",\n            \"createdAt\": \"2022-04-03T23:21:47.000Z\",\n            \"updatedAt\": \"2022-04-03T23:21:47.000Z\",\n            \"movies\": [\n                {\n                    \"id\": 4,\n                    \"image\": \"Pulp Fiction\",\n                    \"title\": \"Pulp Fiction\",\n                    \"release_date\": \"1994-10-14T00:00:00.000Z\",\n                    \"score\": 11,\n                    \"genreId\": 5,\n                    \"createdAt\": \"2022-04-03T23:21:47.000Z\",\n                    \"updatedAt\": \"2022-04-03T23:21:47.000Z\",\n                    \"charactermovies\": {\n                        \"characterId\": 1,\n                        \"movieId\": 4\n                    }\n                }\n            ]\n        },\n        {\n            \"id\": 2,\n            \"image\": \"slj.img\",\n            \"name\": \"Samuel L Jackson\",\n            \"age\": 50,\n            \"weight\": 85,\n            \"history\": \"bio in progress. Please ask later\",\n            \"createdAt\": \"2022-04-03T23:21:47.000Z\",\n            \"updatedAt\": \"2022-04-03T23:21:47.000Z\",\n            \"movies\": [\n                {\n                    \"id\": 4,\n                    \"image\": \"Pulp Fiction\",\n                    \"title\": \"Pulp Fiction\",\n                    \"release_date\": \"1994-10-14T00:00:00.000Z\",\n                    \"score\": 11,\n                    \"genreId\": 5,\n                    \"createdAt\": \"2022-04-03T23:21:47.000Z\",\n                    \"updatedAt\": \"2022-04-03T23:21:47.000Z\",\n                    \"charactermovies\": {\n                        \"characterId\": 2,\n                        \"movieId\": 4\n                    }\n                }\n            ]\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "characters find by Id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:3003/api/v1/characters/5/find",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3003",
+							"path": [
+								"api",
+								"v1",
+								"characters",
+								"5",
+								"find"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "characters create",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"image\": \"UmaThurman.png\",\r\n    \"name\": \"Uma Thurman\",\r\n    \"age\": 51,\r\n    \"weight\": 65,\r\n    \"history\": \"still working on it\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3003/api/v1/characters/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3003",
+							"path": [
+								"api",
+								"v1",
+								"characters",
+								"create"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "characters create",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"image\": \"UmaThurman.png\",\r\n    \"name\": \"Uma Thurman\",\r\n    \"age\": 51,\r\n    \"weight\": 65,\r\n    \"history\": \"still working on it\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3003/api/v1/characters/create",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3003",
+									"path": [
+										"api",
+										"v1",
+										"characters",
+										"create"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Origin, X-Requested-With, Content-Type, Accept"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "68"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"44-UE5R5tSd3jDOLmbSTQ53AGSE6UE\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 03 Apr 2022 23:31:48 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"status_code\": 201,\n    \"message\": \"Character was created\"\n}"
+						},
+						{
+							"name": "characters create - character already exists",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"image\": \"UmaThurman.png\",\r\n    \"name\": \"Uma Thurman\",\r\n    \"age\": 51,\r\n    \"weight\": 65,\r\n    \"history\": \"still working on it\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3003/api/v1/characters/create",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3003",
+									"path": [
+										"api",
+										"v1",
+										"characters",
+										"create"
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Origin, X-Requested-With, Content-Type, Accept"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1417"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"589-kSyZX8IfU6veANTmEfAkAs4a9D8\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 03 Apr 2022 23:32:01 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": false,\n    \"status_code\": 500,\n    \"message\": {\n        \"name\": \"SequelizeUniqueConstraintError\",\n        \"errors\": [\n            {\n                \"message\": \"name must be unique\",\n                \"type\": \"unique violation\",\n                \"path\": \"name\",\n                \"value\": \"Uma Thurman\",\n                \"origin\": \"DB\",\n                \"instance\": {\n                    \"id\": null,\n                    \"image\": \"default.png\",\n                    \"name\": \"Uma Thurman\",\n                    \"age\": 51,\n                    \"weight\": 65,\n                    \"history\": \"still working on it\",\n                    \"createdAt\": \"2022-04-03T23:32:01.097Z\",\n                    \"updatedAt\": \"2022-04-03T23:32:01.097Z\"\n                },\n                \"validatorKey\": \"not_unique\",\n                \"validatorName\": null,\n                \"validatorArgs\": []\n            }\n        ],\n        \"parent\": {\n            \"code\": \"ER_DUP_ENTRY\",\n            \"errno\": 1062,\n            \"sqlState\": \"23000\",\n            \"sqlMessage\": \"Duplicate entry 'Uma Thurman' for key 'characters.name'\",\n            \"sql\": \"INSERT INTO `Characters` (`id`,`image`,`name`,`age`,`weight`,`history`,`createdAt`,`updatedAt`) VALUES (DEFAULT,?,?,?,?,?,?,?);\",\n            \"parameters\": [\n                \"default.png\",\n                \"Uma Thurman\",\n                51,\n                65,\n                \"still working on it\",\n                \"2022-04-03 23:32:01\",\n                \"2022-04-03 23:32:01\"\n            ]\n        },\n        \"original\": {\n            \"code\": \"ER_DUP_ENTRY\",\n            \"errno\": 1062,\n            \"sqlState\": \"23000\",\n            \"sqlMessage\": \"Duplicate entry 'Uma Thurman' for key 'characters.name'\",\n            \"sql\": \"INSERT INTO `Characters` (`id`,`image`,`name`,`age`,`weight`,`history`,`createdAt`,`updatedAt`) VALUES (DEFAULT,?,?,?,?,?,?,?);\",\n            \"parameters\": [\n                \"default.png\",\n                \"Uma Thurman\",\n                51,\n                65,\n                \"still working on it\",\n                \"2022-04-03 23:32:01\",\n                \"2022-04-03 23:32:01\"\n            ]\n        },\n        \"fields\": {\n            \"name\": \"Uma Thurman\"\n        },\n        \"sql\": \"INSERT INTO `Characters` (`id`,`image`,`name`,`age`,`weight`,`history`,`createdAt`,`updatedAt`) VALUES (DEFAULT,?,?,?,?,?,?,?);\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "characters update",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"age\": 65,\r\n    \"weight\": 80,\r\n    \"history\": \"still working on it\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3003/api/v1/characters/3/update",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3003",
+							"path": [
+								"api",
+								"v1",
+								"characters",
+								"3",
+								"update"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "characters update",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"age\": 65,\r\n    \"weight\": 80,\r\n    \"history\": \"still working on it\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3003/api/v1/characters/3/update",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3003",
+									"path": [
+										"api",
+										"v1",
+										"characters",
+										"3",
+										"update"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Origin, X-Requested-With, Content-Type, Accept"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "72"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"48-TnYq8Vl+PPSBrpmIOTVZBh75tS8\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 03 Apr 2022 23:38:12 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"status_code\": 201,\n    \"message\": \"The character was updated\"\n}"
+						}
+					]
+				},
+				{
+					"name": "characters delete",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3003/api/v1/characters/1/delete",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3003",
+							"path": [
+								"api",
+								"v1",
+								"characters",
+								"1",
+								"delete"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "characters delete",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3003/api/v1/characters/1/delete",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3003",
+									"path": [
+										"api",
+										"v1",
+										"characters",
+										"1",
+										"delete"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Origin, X-Requested-With, Content-Type, Accept"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "72"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"48-AZHGGJkT5zb89tT6cY7VnFRAvTI\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 03 Apr 2022 23:38:44 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"status_code\": 201,\n    \"message\": \"The character was deleted\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "characters vs movies",
+			"item": [
+				{
+					"name": "charactermovies",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3003/api/v1/charactermovies",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3003",
+							"path": [
+								"api",
+								"v1",
+								"charactermovies"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "characters - token validation",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:3003/api/v1/charactermovies",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3003",
+									"path": [
+										"api",
+										"v1",
+										"charactermovies"
+									]
+								}
+							},
+							"status": "Forbidden",
+							"code": 403,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Origin, X-Requested-With, Content-Type, Accept"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "57"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"39-cZkEGPt9ufho+h7BcDCinTJeEp8\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 03 Apr 2022 23:17:38 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": false,\n    \"status_code\": 403,\n    \"message\": \"Forbidden\"\n}"
+						},
+						{
+							"name": "characters",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:3003/api/v1/charactermovies",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3003",
+									"path": [
+										"api",
+										"v1",
+										"charactermovies"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Origin, X-Requested-With, Content-Type, Accept"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "633"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"279-cbdsYM/88hWOWYN3uS888mKPQ3k\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 03 Apr 2022 23:42:25 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"status_code\": 200,\n    \"message\": \"OK\",\n    \"data\": [\n        {\n            \"id\": 1,\n            \"characterId\": 7,\n            \"movieId\": 1,\n            \"createdAt\": \"2022-04-03T23:21:47.000Z\",\n            \"updatedAt\": \"2022-04-03T23:21:47.000Z\"\n        },\n        {\n            \"id\": 2,\n            \"characterId\": 8,\n            \"movieId\": 1,\n            \"createdAt\": \"2022-04-03T23:21:47.000Z\",\n            \"updatedAt\": \"2022-04-03T23:21:47.000Z\"\n        },\n        {\n            \"id\": 3,\n            \"characterId\": 5,\n            \"movieId\": 2,\n            \"createdAt\": \"2022-04-03T23:21:47.000Z\",\n            \"updatedAt\": \"2022-04-03T23:21:47.000Z\"\n        },\n        {\n            \"id\": 4,\n            \"characterId\": 6,\n            \"movieId\": 2,\n            \"createdAt\": \"2022-04-03T23:21:47.000Z\",\n            \"updatedAt\": \"2022-04-03T23:21:47.000Z\"\n        },\n        {\n            \"id\": 8,\n            \"characterId\": 2,\n            \"movieId\": 4,\n            \"createdAt\": \"2022-04-03T23:21:47.000Z\",\n            \"updatedAt\": \"2022-04-03T23:21:47.000Z\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "charactermovies create",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"movieId\": 4,\r\n    \"characterId\": 7\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3003/api/v1/charactermovies/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3003",
+							"path": [
+								"api",
+								"v1",
+								"charactermovies",
+								"create"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "charactermovies create",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"movieId\": 4,\r\n    \"characterId\": 7\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3003/api/v1/charactermovies/create",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3003",
+									"path": [
+										"api",
+										"v1",
+										"charactermovies",
+										"create"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Origin, X-Requested-With, Content-Type, Accept"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "74"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"4a-sxlhERYwtbT9PP/cURIUP8cp4pM\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 03 Apr 2022 23:42:49 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"status_code\": 201,\n    \"message\": \"Character Movie was created\"\n}"
+						}
+					]
+				},
+				{
+					"name": "charactermovies delete",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3003/api/v1/charactermovies/9/delete",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3003",
+							"path": [
+								"api",
+								"v1",
+								"charactermovies",
+								"9",
+								"delete"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "charactermovies delete",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3003/api/v1/charactermovies/9/delete",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3003",
+									"path": [
+										"api",
+										"v1",
+										"charactermovies",
+										"9",
+										"delete"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Origin, X-Requested-With, Content-Type, Accept"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "78"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"4e-iOhzljr2CC3P7kLG4J7TWcIj+bQ\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 03 Apr 2022 23:43:11 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"status_code\": 201,\n    \"message\": \"The character movie was deleted\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "genres",
+			"item": [
+				{
+					"name": "genres",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3003/api/v1/genres",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3003",
+							"path": [
+								"api",
+								"v1",
+								"genres"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "genres - token validation",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:3003/api/v1/genres",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3003",
+									"path": [
+										"api",
+										"v1",
+										"genres"
+									]
+								}
+							},
+							"status": "Forbidden",
+							"code": 403,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Origin, X-Requested-With, Content-Type, Accept"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "57"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"39-cZkEGPt9ufho+h7BcDCinTJeEp8\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 03 Apr 2022 23:18:05 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": false,\n    \"status_code\": 403,\n    \"message\": \"Forbidden\"\n}"
+						},
+						{
+							"name": "genres",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:3003/api/v1/genres",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3003",
+									"path": [
+										"api",
+										"v1",
+										"genres"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Origin, X-Requested-With, Content-Type, Accept"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "814"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"32e-bv6B+kwzvrppkv4v4zT/Ebzz6JM\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 03 Apr 2022 23:43:22 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"status_code\": 200,\n    \"message\": \"OK\",\n    \"data\": [\n        {\n            \"id\": 1,\n            \"image\": \"Animation.png\",\n            \"name\": \"Animation\",\n            \"createdAt\": \"2022-04-03T23:21:47.000Z\",\n            \"updatedAt\": \"2022-04-03T23:21:47.000Z\"\n        },\n        {\n            \"id\": 2,\n            \"image\": \"Horror.png\",\n            \"name\": \"Horror\",\n            \"createdAt\": \"2022-04-03T23:21:47.000Z\",\n            \"updatedAt\": \"2022-04-03T23:21:47.000Z\"\n        },\n        {\n            \"id\": 3,\n            \"image\": \"Comedy.png\",\n            \"name\": \"Comedy\",\n            \"createdAt\": \"2022-04-03T23:21:47.000Z\",\n            \"updatedAt\": \"2022-04-03T23:21:47.000Z\"\n        },\n        {\n            \"id\": 4,\n            \"image\": \"Thriller.png\",\n            \"name\": \"Thriller\",\n            \"createdAt\": \"2022-04-03T23:21:47.000Z\",\n            \"updatedAt\": \"2022-04-03T23:21:47.000Z\"\n        },\n        {\n            \"id\": 5,\n            \"image\": \"Action.png\",\n            \"name\": \"Action\",\n            \"createdAt\": \"2022-04-03T23:21:47.000Z\",\n            \"updatedAt\": \"2022-04-03T23:21:47.000Z\"\n        },\n        {\n            \"id\": 6,\n            \"image\": \"Western.png\",\n            \"name\": \"Western\",\n            \"createdAt\": \"2022-04-03T23:21:47.000Z\",\n            \"updatedAt\": \"2022-04-03T23:21:47.000Z\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "genres create",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"image\": \"Zombie.img\",\r\n    \"name\": \"Zombie season\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3003/api/v1/genres/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3003",
+							"path": [
+								"api",
+								"v1",
+								"genres",
+								"create"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "genres create",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"image\": \"Zombie.img\",\r\n    \"name\": \"Zombie season\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3003/api/v1/genres/create",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3003",
+									"path": [
+										"api",
+										"v1",
+										"genres",
+										"create"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Origin, X-Requested-With, Content-Type, Accept"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "64"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"40-yAKaPZkZndRUVi1twlFWEe22YrM\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 03 Apr 2022 23:43:38 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"status_code\": 201,\n    \"message\": \"Genre was created\"\n}"
+						}
+					]
+				},
+				{
+					"name": "genres delete",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3003/api/v1/genres/7/delete",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3003",
+							"path": [
+								"api",
+								"v1",
+								"genres",
+								"7",
+								"delete"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "genres delete",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3003/api/v1/genres/7/delete",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3003",
+									"path": [
+										"api",
+										"v1",
+										"genres",
+										"7",
+										"delete"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Origin, X-Requested-With, Content-Type, Accept"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "68"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"44-QnrTm7NVPiXz1NUYCAsXcTcdUug\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 03 Apr 2022 23:43:51 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"status_code\": 201,\n    \"message\": \"The genre was deleted\"\n}"
+						},
+						{
+							"name": "genres delete - not found",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3003/api/v1/genres/7/delete",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3003",
+									"path": [
+										"api",
+										"v1",
+										"genres",
+										"7",
+										"delete"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Origin, X-Requested-With, Content-Type, Accept"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "79"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"4f-KQYfExDHWVECf9U2K1nWsHm8JpA\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 03 Apr 2022 23:44:02 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": false,\n    \"status_code\": 404,\n    \"message\": \"There are no genre with that ID\"\n}"
+						}
+					]
+				}
+			]
+		}
+	]
+}
