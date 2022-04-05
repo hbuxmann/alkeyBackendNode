@@ -2,6 +2,7 @@
 let chai = require("chai");
 let chaiHttp = require("chai-http");
 let server = require("../app");
+let generateString = require('../functions/generateString');
 
 //Assertion Style
 chai.should();
@@ -63,6 +64,55 @@ describe('Character API Tests', () => {
 
         });
     });
+
+    describe("POST /characters create", () => {
+        it("It should POST characters", (done) => {
+
+            let nameR = generateString(10);
+            const characterNew = {
+                "image": nameR + ".png",
+                "name": nameR,
+                "age": Math.floor(Math.random() * 100),
+                "weight": Math.floor(Math.random() * 70),
+                "history": "still working on it"
+            };
+            chai.request(server)
+                .post("/api/v1/characters/create")
+                .auth(token, { type: 'bearer' })
+                .send(characterNew)
+                .end((err, response) => {
+                    response.should.have.status(201);
+                    response.body.should.have.property('success').eq(true);
+                    response.body.should.have.property('status_code').eq(201);
+                    response.body.should.have.property('message').eq('Character was created');
+                    response.body.should.be.a('object');
+                    done();
+                });
+
+        });
+
+        it("It should NOT POST characters", (done) => {
+            const characterNew = {
+                "age": Math.floor(Math.random() * 100),
+                "weight": Math.floor(Math.random() * 70),
+                "history": "still working on it"
+            };
+            chai.request(server)
+                .post("/api/v1/characters/create")
+                .auth(token, { type: 'bearer' })
+                .send(characterNew)
+                .end((err, response) => {
+                    response.should.have.status(401);
+                    response.body.should.have.property('success').eq(false);
+                    response.body.should.have.property('status_code').eq(401);
+                    response.body.should.have.property('message').eq('Missing critical data, please check your request');
+                    response.body.should.be.a('object');
+                    done();
+                });
+
+        });
+    });
+    
     
 
 });

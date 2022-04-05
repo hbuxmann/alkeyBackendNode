@@ -34,8 +34,13 @@ app.use("/api/v1/characters",       charactersRouter);
 app.use("/api/v1/movies",           moviesRouter);
 app.use("/api/v1/charactermovies",  characterMoviesRouter);
 app.use("/api/v1/genres",           genresRouter);
-
-
-
+// Page not found
+app.use((req, res, next) => {
+    res.status(404).json({
+                 success: false,
+                 status_code: 404,
+                 message: 'Not found'
+    });
+})
 const port = process.env.PORT || 3003;
 module.exports = app.listen(port, () => console.log(`Up and running on port ${port}...`));

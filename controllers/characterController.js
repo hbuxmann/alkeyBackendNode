@@ -87,6 +87,26 @@ const characterController = {
         }
 
     },
+    relate: async function(req, res){  
+        //
+        try {
+            // 
+            const characterId   =    req.params.idc;
+            const movieId       =    req.params.idm;
+            //
+            const result =  await db.Charactermovie.create({
+                movieId,
+                characterId,
+                createdAt: new Date(),
+                updatedAt: new Date() 
+            });            
+            //
+            return sendBack(res, true, 201, 'Character Movie relation was created');
+            //
+        } catch(err) {
+            return sendBack(res, false, 500, err);              
+        }
+    },
     create: async function(req, res){      
         //
         try {

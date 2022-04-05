@@ -2,7 +2,7 @@
 	"info": {
 		"_postman_id": "eb69259c-09ae-41ea-978e-6725f02efcf5",
 		"name": "Challenge Alkemy",
-		"description": "In order to execute all the endponts related with movies, characters, character vs movies and genres you must to get a token.\n\nHow to get a token?\n\nYou should register a user and thend login in order to get a token key. Once you get this token, you must include it in the header, in the authorization section.",
+		"description": "In order to execute all the endpoints related with movies, characters, character vs movies and genres you must to get a token.\n\nHow to get a token?\n\nYou need to register a user and then login in order to get a token key. Once you get this token, you must include it in the header, in the authorization section for each request.",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -478,7 +478,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"nickname\": \"buxi\",\r\n    \"user\": \"hbuxmann@gmail.com\",\r\n    \"password\": \"1234\"\r\n}",
+									"raw": "{\r\n    \"nickname\": \"bux\",\r\n    \"user\": \"hernan@gmail.com\",\r\n    \"password\": \"1234\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -546,7 +546,8 @@
 						}
 					]
 				}
-			]
+			],
+			"description": "Important: the token will be able to be used for a maximum period of one hour, after which a new one must be required"
 		},
 		{
 			"name": "movies",
@@ -584,7 +585,7 @@
 								"header": [
 									{
 										"key": "Authorization",
-										"value": "Bearer {{token}}",
+										"value": "Bearer ",
 										"type": "text"
 									}
 								],
@@ -756,7 +757,7 @@
 								"header": [
 									{
 										"key": "Authorization",
-										"value": "Bearer {{token}}",
+										"value": "Bearer ",
 										"type": "text"
 									}
 								],
@@ -944,7 +945,7 @@
 								"header": [
 									{
 										"key": "Authorization",
-										"value": "Bearer {{token}}",
+										"value": "Bearer ",
 										"type": "text"
 									}
 								],
@@ -1708,6 +1709,129 @@
 							],
 							"cookie": [],
 							"body": "{\n    \"success\": true,\n    \"status_code\": 201,\n    \"message\": \"The movie was deleted\"\n}"
+						}
+					]
+				},
+				{
+					"name": "movie relate to character",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3003/api/v1/movies/4/character/4/relate",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3003",
+							"path": [
+								"api",
+								"v1",
+								"movies",
+								"4",
+								"character",
+								"4",
+								"relate"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "movie relate to character",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3003/api/v1/movies/4/character/4/relate",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3003",
+									"path": [
+										"api",
+										"v1",
+										"movies",
+										"4",
+										"character",
+										"4",
+										"relate"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Origin, X-Requested-With, Content-Type, Accept"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "83"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"53-1qeXLonyJSKw2TmtnJkROSE4Xlo\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 05 Apr 2022 01:15:21 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"status_code\": 201,\n    \"message\": \"Movie Character relation was created\"\n}"
 						}
 					]
 				}
@@ -2910,6 +3034,129 @@
 							],
 							"cookie": [],
 							"body": "{\n    \"success\": true,\n    \"status_code\": 201,\n    \"message\": \"The character was deleted\"\n}"
+						}
+					]
+				},
+				{
+					"name": "character relate to movie",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3003/api/v1/characters/2/movie/1/relate",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3003",
+							"path": [
+								"api",
+								"v1",
+								"characters",
+								"2",
+								"movie",
+								"1",
+								"relate"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "character relate to movie",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3003/api/v1/characters/2/movie/1/relate",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3003",
+									"path": [
+										"api",
+										"v1",
+										"characters",
+										"2",
+										"movie",
+										"1",
+										"relate"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Origin, X-Requested-With, Content-Type, Accept"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "74"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"4a-sxlhERYwtbT9PP/cURIUP8cp4pM\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 05 Apr 2022 01:00:57 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"status_code\": 201,\n    \"message\": \"Character Movie was created\"\n}"
 						}
 					]
 				}
