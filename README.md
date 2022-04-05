@@ -15,22 +15,22 @@ SENDER --> (optional) this is the name tha will be into the sender field (e.g 'J
 EMAIL --> the email registered with the SAK (e.g. 'juanpere@gmail.com')
 
 
-- Application installation
+3. Application installation
 git init
 git remote add origin https://github.com/hbuxmann/alkeyBackendNode
 git pull origin master
 npm install
 
-- DB object creation
+4. DB object creation
 npx sequelize-cli db:migrate
 
-- DB Population
+5. DB Population
 sequelize db:seed:all
 
-- Unit tests validations
+6. Unit tests validations
 npm test
 
-- Other key topics
+7. Other key topics
 
 Postman Collection: /postman_collection
 
