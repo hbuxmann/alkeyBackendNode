@@ -1,10 +1,10 @@
 Software dependency:
 - Node
 - MySql
-- Sendgrid account in order to send an email during account registration 
+- Sendgrid account in order to send an email during registration process
 
 
-Before to star you must to update the following files:
+Before to start you must to update the following files:
 
 1. database/config/config.js
 
